@@ -135,13 +135,13 @@ public final class MCServerPing {
 
       if (descriptionJsonObject.has("extra")) {
         descriptionJsonObject.addProperty("text",
-                new TextComponent(ComponentSerializer.parse(
-                        descriptionJsonObject
-                                .get("extra")
-                                .getAsJsonArray()
-                                .toString()
-                )).toLegacyText()
-        );
+                new TextComponent(descriptionJsonObject.get("text").getAsString()).toLegacyText() +
+                        new TextComponent(ComponentSerializer.parse(
+                                descriptionJsonObject
+                                        .get("extra")
+                                        .getAsJsonArray()
+                                        .toString()
+                        )).toLegacyText());
         jsonObj.add("description", descriptionJsonObject);
       }
 
